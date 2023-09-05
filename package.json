@@ -25,7 +25,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://{skylardyer}.github.io/{se_project_react}",
+  "homepage": "https://{SkylarDyer}.github.io/{se_project_react}",
 
   "browserslist": {
     "production": [
