@@ -17,7 +17,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
-  // const setWeatherType = useState('');
+  const [weather, setWeatherType] = useState("");
   const handleCreateModal = () => {
     setActiveModal("create");
   };
@@ -33,7 +33,7 @@ function App() {
     getForecast().then((data) => {
       const temperature = parseWeatherData(data);
       setTemp(temperature);
-      // setWeatherType(parseWeatherType(data));
+      setWeatherType(parseWeatherType(data));
     });
   }, []);
 
