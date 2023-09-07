@@ -2,8 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 60px;
   padding: 0 20px;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-family: "CabinetGrotesk-Bold";
+  max-width: 1360px;
 }
 
 .header__logo {
@@ -11,8 +15,28 @@
   align-items: center;
   gap: 20px;
 }
-.header__avatar-logo {
+.header__avatar {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.header__button {
+  border: none;
+  background-color: white;
+  font-family: "CabinetGrotesk-Bold", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.header__left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__right {
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }

@@ -47,3 +47,83 @@
 .modal__form {
   margin: 0 28px 0 28px;
 }
+.modal__text-inputs {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+  gap: 24px;
+}
+
+.modal__label {
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+  margin-top: 30px;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+}
+
+.modal__input {
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 16px;
+  padding: 10px 0;
+}
+
+.modal__select-weather {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  padding-top: 24px;
+  margin-top: 0;
+  margin-bottom: 17px;
+}
+
+.modal__radio-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  color: rgba(0, 0, 0, 0.5);
+  accent-color: #000;
+}
+
+.modal__radio-button {
+  height: 16px;
+  width: 16px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__submit-button {
+  margin-top: 34px;
+  width: 124px;
+  height: 36px;
+  color: #fff;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  border-radius: 4px;
+  background-color: #000;
+  border: 1px;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.modal__submit-button:hover {
+  opacity: 0.6;
+}
+
+.modal__submit-button:disabled {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: default;
+}
