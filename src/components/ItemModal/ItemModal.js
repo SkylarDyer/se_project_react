@@ -1,6 +1,7 @@
 import "../ItemModal/ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose }) => {
+  console.log(selectedCard)
   return (
     <div className={`modal`}>
       <div className="modal__content">
@@ -11,7 +12,7 @@ const ItemModal = ({ selectedCard, onClose }) => {
         ></button>
         <img
           src={selectedCard.link}
-          alt="Add Item"
+          alt="Garment"
           className="modal__image-preview"
         />
         <div className="modal__item-name">{selectedCard.name}</div>
