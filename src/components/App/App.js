@@ -29,11 +29,15 @@ function App() {
   };
 
   useEffect(() => {
-    getForecast().then((data) => {
-      const temperature = parseWeatherData(data);
-      setTemp(temperature);
-      // setWeatherType(parseWeatherType(data));
-    });
+    getForecast()
+      .then((data) => {
+        const temperature = parseWeatherData(data);
+        setTemp(temperature);
+        // setWeatherType(parseWeatherType(data));
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }, []);
 
   return (
