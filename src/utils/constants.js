@@ -51,13 +51,13 @@ const defaultClothingItems = [
 ];
 
 const weatherOptions = [
-  { url: clearDay, day: true, type: "sunny" },
+  { url: clearDay, day: true, type: "clear" },
   { url: cloudyDay, day: true, type: "cloudy" },
   { url: foggyDay, day: true, type: "fog" },
   { url: rainyDay, day: true, type: "rain" },
   { url: snowyDay, day: true, type: "snow" },
   { url: stormyDay, day: true, type: "storm" },
-  { url: clearNight, day: false, type: "sunny" },
+  { url: clearNight, day: false, type: "clear" },
   { url: cloudyNight, day: false, type: "cloudy" },
   { url: foggyNight, day: false, type: "fog" },
   { url: rainyNight, day: false, type: "rain" },
