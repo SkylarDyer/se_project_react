@@ -28,21 +28,23 @@ export const parseWeatherData = (data) => {
   return weather;
 };
 
+export const parseLocation = (data) => {
+  const city = data.name;
+  return city;
+};
+
 export const parseWeatherType = (data) => {
   const weatherData = data.weather;
   const currentWeatherCondition = weatherData[0].main.toLowerCase();
   return currentWeatherCondition;
 };
 
-export const timeOfDay = (data) => {
-  const system = data.sys;
-  const sunriseTime = system.sunrise * 1000;
-  const sunsetTime = system.sunset * 1000;
-  let time = {
-    sunrise: sunriseTime,
-    sunset: sunsetTime,
-  };
-  return time;
+export const parseTimeOfDay = (data) => {
+  const sunsetTime = data.system.sunset * 1000;
+  const currentTime = Math.floor(Date.now() / 1000);
+  if (currentTime < sunsetTime) {
+    return true;
+  } else return false;
 };
 
 // weather.temperature.F = `${Math.round(data.main.temp)}°F`;

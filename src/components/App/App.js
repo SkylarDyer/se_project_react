@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
+import Profile from "../Profile/Profile";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect, useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
@@ -9,17 +10,20 @@ import { Switch, Route } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import {
   getForecast,
-  parseWeatherType,
   parseWeatherData,
+  parseLocation,
+  parseTimeOfDay,
 } from "../../utils/weatherApi";
 import AddItemModal from "../../AddItemModal/AddItemModal";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   // const weatherTemp = "75°F";
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
-  // const [weather, setWeatherType] = useState("");
+  const [isDay, setDayOrNight] = useState("true");
+  const [location, setLocation] = useState;
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -36,6 +40,23 @@ function App() {
     console.log(values);
   };
 
+  const handleCardDelete = (values) => {
+    deleteClothingItems(values.id)
+      .then((data) => {
+        const deleteId = values.id;
+        const updatedArray = clothingArray.filter((item) => {
+          return item.id !== idToDelete;
+        });
+        setClothingArray(updatedArray);
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleAddItemSubmit = () => {};
+
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
@@ -46,8 +67,12 @@ function App() {
     getForecast()
       .then((data) => {
         const temperature = parseWeatherData(data);
+        const isDaytime = parseTimeOfDay(data);
+        const city = parseLocation(data);
+
+        setLocation(city);
         setTemp(temperature);
-        // setWeatherType(parseWeatherType(data));
+        setDayOrNight(isDaytime);
       })
       .catch((err) => {
         console.error(err);
@@ -60,12 +85,23 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <Header onCreateModal={handleCreateModal} />
+        <Header onCreateModal={handleCreateModal} city={location} />
         <Switch>
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              dayOrNight={isDay}
+              clothingArr={clothingArr}
+            />
           </Route>
-          <Route path="/profile">Profile</Route>
+          <Route path="/profile">
+            <Profile
+              clothingArr={clothingArr}
+              onCreateModal={handleCreateModal}
+              onSelectCard={handleSelectedCard}
+            />
+          </Route>
         </Switch>
         <Footer />
         {activeModal === "create" && (
@@ -76,7 +112,11 @@ function App() {
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+          <ItemModal
+            selectedCard={selectedCard}
+            onClose={handleCloseModal}
+            onDeleteCard={handleCardDelete}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>
