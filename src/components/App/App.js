@@ -14,6 +14,11 @@ import {
   parseLocation,
   parseTimeOfDay,
 } from "../../utils/weatherApi";
+import {
+  getClothingItems,
+  deleteClothingItems,
+  addClothingItem,
+} from "../../utils/Api";
 import AddItemModal from "../../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
 
@@ -23,7 +28,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [isDay, setDayOrNight] = useState("true");
-  const [location, setLocation] = useState;
+  const [location, setLocation] = useState();
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -34,10 +39,6 @@ function App() {
   const handleSelectedCard = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
-  };
-
-  const onAddItem = (values) => {
-    console.log(values);
   };
 
   const handleCardDelete = (values) => {
@@ -55,7 +56,18 @@ function App() {
       });
   };
 
-  const handleAddItemSubmit = () => {};
+  const handleAddItemSubmit = (values) => {
+    addClothingItem(values.name, values.url, values.weather)
+      .then((data) => {
+        const newClothing = [data, ...clothingArray];
+
+        handleCloseModal();
+        setClothingArray(newClothing);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
@@ -77,6 +89,48 @@ function App() {
       .catch((err) => {
         console.error(err);
       });
+  }, []);
+
+  useEffect(() => {
+    getClothingItems()
+      .then((data) => {
+        const clothingArray = data;
+        setClothingArray(clothingArray);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    const handleEscClose = (evt) => {
+      if (evt.key === "escape") {
+        {
+          handleCloseModal();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickClose = (evt) => {
+      if (
+        evt.target.classList.contains("item_modal") ||
+        evt.target.classList.contains("modal")
+      ) {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("click", handleClickClose);
+
+    return () => {
+      document.removeEventListener("click", handleClickClose);
+    };
   }, []);
 
   console.log(currentTemperatureUnit);
@@ -108,7 +162,7 @@ function App() {
           <AddItemModal
             handleCloseModal={handleCloseModal}
             isOpen={activeModal === "create"}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItemSubmit}
           />
         )}
         {activeModal === "preview" && (
