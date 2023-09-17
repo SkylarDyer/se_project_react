@@ -4,7 +4,7 @@ import avatar from "../../images/avatar.svg";
 import ToggleSwitch from "../../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-const Header = ({ onCreateModal }) => {
+const Header = ({ onCreateModal, location }) => {
   return (
     <header className="header">
       <div className="header__logo">
@@ -13,7 +13,7 @@ const Header = ({ onCreateModal }) => {
             <img src={logo} alt="WTWR Logo" />
           </Link>
         </div>
-        <div>Date</div>
+        <h3 className="header__location">9/16, {location}</h3>
       </div>
       <div className="header__avatar">
         <div className="header__right">
@@ -27,9 +27,11 @@ const Header = ({ onCreateModal }) => {
             + Add clothes
           </button>
         </div>
-        <Link to="/profile">Name</Link>
+        <Link className="header__name" to="/profile">
+          Skylar Dyer
+        </Link>
         <div>
-          <img src={avatar} alt="Avatar Logo" />
+          <img src={avatar} alt="Avatar Logo" className="header__avatar" />
         </div>
       </div>
     </header>

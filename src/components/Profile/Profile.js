@@ -1,39 +1,32 @@
 import React from "react";
-import avatar from "../../images/avatar.svg";
 import "./Profile.css";
 import Sidebar from "../Sidebar/Sidebar";
-// import clothes
+import Clothes from "../Clothes/Clothes";
 
-const Profile = ({ onCreateModal }) => {
+const Profile = ({ onCreateModal, onSelectCard, clothingArr }) => {
   return (
-    <div className="profile">
-      <div className="profile__heading">
-        <div className="profile__heading_user">
-          <img src={avatar} alt="logo" className="profile__avatar-image" />
-          <div className="profile__name">Skylar Dyer</div>
-        </div>
-        <div className="profile__heading_clothes">
-          <div className="profile__title">Your Items</div>
-          <div className="profile__add_new">
-            <button
-              type="text"
-              className="profile__add_button"
-              onClick={onCreateModal}
-            >
-              + Add New
-            </button>
-          </div>
-        </div>
-      </div>
-      <div className="profile__content">
+    <section className="profile">
+      <div className="profile__sidebar">
         <Sidebar />
-        <Clothes
-          className="clothing"
-          onSelectCard={onSelectCard}
-          clothingArr={clothingArr}
-        />
       </div>
-    </div>
+      <div className="profile__heading">
+        <h3 className="profile__title">Your Items</h3>
+        <button
+          type="text"
+          className="profile__add_button"
+          onClick={onCreateModal}
+        >
+          + Add New
+        </button>
+      </div>
+
+      <Clothes
+        className="clothing"
+        onSelectCard={onSelectCard}
+        clothingArr={clothingArr}
+        onCreateModal={onCreateModal}
+      />
+    </section>
   );
 };
 

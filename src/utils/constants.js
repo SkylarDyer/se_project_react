@@ -1,16 +1,3 @@
-import clearDay from "../images/day/clear.svg";
-import cloudyDay from "../images/day/cloudy.svg";
-import foggyDay from "../images/day/fog.svg";
-import rainyDay from "../images/day/rain.svg";
-import snowyDay from "../images/day/snowy.svg";
-import stormyDay from "../images/day/storm.svg";
-import clearNight from "../images/night/clear.svg";
-import cloudyNight from "../images/night/cloudy.svg";
-import foggyNight from "../images/night/fog.svg";
-import rainyNight from "../images/night/rain.svg";
-import snowyNight from "../images/night/snowy.svg";
-import stormyNight from "../images/night/storm.svg";
-
 const defaultClothingItems = [
   {
     _id: 0,
@@ -50,19 +37,75 @@ const defaultClothingItems = [
   },
 ];
 
-const weatherOptions = [
-  { url: clearDay, day: true, type: "clear" },
-  { url: cloudyDay, day: true, type: "cloudy" },
-  { url: foggyDay, day: true, type: "fog" },
-  { url: rainyDay, day: true, type: "rain" },
-  { url: snowyDay, day: true, type: "snow" },
-  { url: stormyDay, day: true, type: "storm" },
-  { url: clearNight, day: false, type: "clear" },
-  { url: cloudyNight, day: false, type: "cloudy" },
-  { url: foggyNight, day: false, type: "fog" },
-  { url: rainyNight, day: false, type: "rain" },
-  { url: snowyNight, day: false, type: "snow" },
-  { url: stormyNight, day: false, type: "storm" },
+export const weatherOptions = [
+  {
+    url: require("../images/day/clear.svg").default,
+    day: true,
+    type: "sunny",
+  },
+  {
+    url: require("../images/day/cloudy.svg").default,
+    day: true,
+    type: "cloudy",
+  },
+  {
+    url: require("../images/day/fog.svg").default,
+    day: true,
+    type: "fog",
+  },
+  {
+    url: require("../images/day/rain.svg").default,
+    day: true,
+    type: "rain",
+  },
+  {
+    url: require("../images/day/snowy.svg").default,
+    day: true,
+    type: "snow",
+  },
+  {
+    url: require("../images/day/storm.svg").default,
+    day: true,
+    type: "storm",
+  },
+  {
+    url: require("../images/night/clear.svg").default,
+    day: false,
+    type: "clear",
+  },
+  {
+    url: require("../images/night/cloudy.svg").default,
+    day: false,
+    type: "cloudy",
+  },
+  {
+    url: require("../images/night/fog.svg").default,
+    day: false,
+    type: "fog",
+  },
+  {
+    url: require("../images/night/rain.svg").default,
+    day: false,
+    type: "rain",
+  },
+  {
+    url: require("../images/night/snowy.svg").default,
+    day: false,
+    type: "snow",
+  },
+  {
+    url: require("../images/night/storm.svg").default,
+    day: false,
+    type: "storm",
+  },
 ];
+export const headers = {
+  authorization: "",
+  "Content-Type": "application/json",
+};
+export const longitude = -96.818733;
+export const latitude = 33.155373;
+export const APIkey = "a1885fd7a60e43937a91ed214e207d85";
+export const baseUrl = "http://localhost:3001";
 
-export { weatherOptions, defaultClothingItems };
+export { defaultClothingItems };

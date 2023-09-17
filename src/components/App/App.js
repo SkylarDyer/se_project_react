@@ -23,13 +23,18 @@ import AddItemModal from "../../AddItemModal/AddItemModal";
 import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
-  // const weatherTemp = "75°F";
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
   const [isDay, setDayOrNight] = useState("true");
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState("");
+  const [clothingArray, setClothingArray] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+
+  /* -------------------------------------------------------------------------- */
+  /*                                  HANDLERS                                  */
+  /* -------------------------------------------------------------------------- */
+
   const handleCreateModal = () => {
     setActiveModal("create");
   };
@@ -46,7 +51,7 @@ function App() {
       .then((data) => {
         const deleteId = values.id;
         const updatedArray = clothingArray.filter((item) => {
-          return item.id !== idToDelete;
+          return item.id !== deleteId;
         });
         setClothingArray(updatedArray);
         handleCloseModal();
@@ -57,12 +62,15 @@ function App() {
   };
 
   const handleAddItemSubmit = (values) => {
-    addClothingItem(values.name, values.url, values.weather)
-      .then((data) => {
-        const newClothing = [data, ...clothingArray];
-
+    const newItem = {
+      name: values.name,
+      imageUrl: values.imageUrl,
+      weather: values.weather,
+    };
+    addClothingItem(newItem)
+      .then((newItem) => {
+        setClothingArray([newItem, ...clothingArray]);
         handleCloseModal();
-        setClothingArray(newClothing);
       })
       .catch((err) => {
         console.log(err);
@@ -75,14 +83,17 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  /* -------------------------------------------------------------------------- */
+  /*                                 USE EFFECT                                 */
+  /* -------------------------------------------------------------------------- */
   useEffect(() => {
     getForecast()
       .then((data) => {
         const temperature = parseWeatherData(data);
         const isDaytime = parseTimeOfDay(data);
-        const city = parseLocation(data);
+        const location = parseLocation(data);
 
-        setLocation(city);
+        setLocation(location);
         setTemp(temperature);
         setDayOrNight(isDaytime);
       })
@@ -94,8 +105,7 @@ function App() {
   useEffect(() => {
     getClothingItems()
       .then((data) => {
-        const clothingArray = data;
-        setClothingArray(clothingArray);
+        setClothingArray(data);
       })
       .catch((err) => {
         console.log(err);
@@ -103,8 +113,9 @@ function App() {
   }, []);
 
   useEffect(() => {
+    if (!activeModal) return;
     const handleEscClose = (evt) => {
-      if (evt.key === "escape") {
+      if (evt.key === "Escape") {
         {
           handleCloseModal();
         }
@@ -114,7 +125,7 @@ function App() {
     return () => {
       document.removeEventListener("keydown", handleEscClose);
     };
-  }, []);
+  }, [activeModal]);
 
   useEffect(() => {
     const handleClickClose = (evt) => {
@@ -133,25 +144,24 @@ function App() {
     };
   }, []);
 
-  console.log(currentTemperatureUnit);
   return (
     <div>
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <Header onCreateModal={handleCreateModal} city={location} />
+        <Header onCreateModal={handleCreateModal} location={location} isd />
         <Switch>
           <Route exact path="/">
             <Main
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
-              dayOrNight={isDay}
-              clothingArr={clothingArr}
+              setDayOrNight={isDay}
+              clothingArr={clothingArray}
             />
           </Route>
           <Route path="/profile">
             <Profile
-              clothingArr={clothingArr}
+              clothingArr={clothingArray}
               onCreateModal={handleCreateModal}
               onSelectCard={handleSelectedCard}
             />

@@ -1,18 +1,10 @@
-const longitude = -96.818733;
-const latitude = 33.155373;
-const APIkey = "a1885fd7a60e43937a91ed214e207d85";
+import { processServerResponse } from "./Api";
+import { longitude, latitude, APIkey } from "./constants";
 
 export const getForecast = () => {
   const weatherApi = fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then((res) => {
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error: ${res.status}`);
-    }
-  });
-
+  ).then(processServerResponse);
   return weatherApi;
 };
 
@@ -29,18 +21,18 @@ export const parseWeatherData = (data) => {
 };
 
 export const parseLocation = (data) => {
-  const city = data.name;
-  return city;
+  const location =  data.name;
+  return location;
 };
 
-export const parseWeatherType = (data) => {
-  const weatherData = data.weather;
-  const currentWeatherCondition = weatherData[0].main.toLowerCase();
-  return currentWeatherCondition;
-};
+// export const parseWeatherType = (data) => {
+//   const weatherData = data.weather;
+//   const currentWeatherCondition = weatherData[0].main.toLowerCase();
+//   return currentWeatherCondition;
+// };
 
 export const parseTimeOfDay = (data) => {
-  const sunsetTime = data.system.sunset * 1000;
+  const sunsetTime = data.sys.sunset * 1000;
   const currentTime = Math.floor(Date.now() / 1000);
   if (currentTime < sunsetTime) {
     return true;

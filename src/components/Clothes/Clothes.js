@@ -7,12 +7,7 @@ const Clothes = ({ clothingArr, onSelectCard }) => {
     <section className="clothing__section">
       <div className="clothing__section_cards">
         {clothingArr.map((item) => {
-          <ItemCard
-            item={item}
-            onSelectCard={onSelectCard}
-            key={item.id}
-            className="clothing__section_card"
-          />;
+          <ItemCard item={item} onSelectCard={onSelectCard} key={item.id} />;
         })}
       </div>
     </section>
