@@ -20,7 +20,6 @@ import {
   addClothingItem,
 } from "../../utils/Api";
 import AddItemModal from "../../AddItemModal/AddItemModal";
-import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -107,9 +106,7 @@ function App() {
       .then((data) => {
         setClothingArray(data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
@@ -149,7 +146,7 @@ function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <Header onCreateModal={handleCreateModal} location={location} isd />
+        <Header onCreateModal={handleCreateModal} location={location} />
         <Switch>
           <Route exact path="/">
             <Main

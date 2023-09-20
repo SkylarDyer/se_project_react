@@ -9,7 +9,8 @@ export const processServerResponse = (res) => {
 };
 
 export const getClothingItems = () => {
-  const clothingApi = fetch(`${baseUrl}/items/`, {
+  const clothingApi = fetch(`${baseUrl}/items`, {
+    method: "GET",
     headers: { "Content-Type": "application/json" },
   }).then(processServerResponse);
   return clothingApi;
@@ -25,11 +26,11 @@ export const deleteClothingItems = (id) => {
 export const addClothingItem = (newItem) => {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
+    headers: { "Content-Type": "application / json" },
     body: JSON.stringify({
       name: newItem.name,
       imageUrl: newItem.imageUrl,
       weather: newItem.weather,
     }),
-    headers: { "Content-Type": "application / json" },
   }).then(processServerResponse);
 };
