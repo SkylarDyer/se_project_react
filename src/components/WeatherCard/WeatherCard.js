@@ -9,6 +9,7 @@ const WeatherCard = ({ day, type, weatherTemp = "" }) => {
   const weatherOption = weatherOptions.find((item) => {
     return item.day === day && item.type === type;
   });
+
   const weatherOptionUrl = weatherOption?.url || "";
   const weatherOptionType = weatherOption?.type;
 

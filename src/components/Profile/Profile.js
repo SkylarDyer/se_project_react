@@ -8,22 +8,12 @@ const Profile = ({ onCreateModal, onSelectCard, clothingArr }) => {
       <div className="profile__sidebar">
         <Sidebar />
       </div>
-      <div className="profile__heading">
-        <h3 className="profile__title">Your Items</h3>
-        <button
-          type="text"
-          className="profile__add_button"
-          onClick={onCreateModal}
-        >
-          + Add New
-        </button>
-      </div>
 
       <ClothesSection
         className="clothing"
+        onCreateModal={onCreateModal}
         onSelectCard={onSelectCard}
         clothingArr={clothingArr}
-        onCreateModal={onCreateModal}
       />
     </section>
   );

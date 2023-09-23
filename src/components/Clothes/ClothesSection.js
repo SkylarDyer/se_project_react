@@ -1,19 +1,25 @@
 import React from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
-const ClothesSection = ({ clothingArr, onSelectCard }) => {
+const ClothesSection = ({ onCreateModal, onSelectCard, clothingArr }) => {
   return (
-    <section className="clothing__section">
+    <div className="clothing__section">
+      <div className="profile__heading">
+        <h3 className="profile__title">Your Items</h3>
+        <button
+          type="button"
+          className="profile__add_button"
+          onClick={onCreateModal}
+        >
+          + Add New
+        </button>
+      </div>
       <div className="clothing__section_cards">
         {clothingArr.map((item) => {
-          <ItemCard
-            item={item}
-            onSelectCard={onSelectCard}
-            key={item._id}
-          />;
+          <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />;
         })}
       </div>
-    </section>
+    </div>
   );
 };
 

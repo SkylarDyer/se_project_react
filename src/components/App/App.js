@@ -3,7 +3,6 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useEffect, useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 import { Switch, Route } from "react-router-dom";
@@ -66,8 +65,8 @@ function App() {
     console.log(values);
     const newItem = {
       name: values.name,
-      imageUrl: values.link,
       weather: values.weather,
+      imageUrl: values.link,
     };
     addClothingItem(newItem)
       .then((res) => {
@@ -77,7 +76,6 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    console.log(clothingArray);
   };
 
   const handleToggleSwitchChange = () => {
@@ -181,9 +179,9 @@ function App() {
           </Route>
           <Route path="/profile">
             <Profile
-              clothingArr={clothingArray}
               onCreateModal={handleCreateModal}
               onSelectCard={handleSelectedCard}
+              clothingArr={clothingArray}
             />
           </Route>
         </Switch>
@@ -191,12 +189,14 @@ function App() {
         {activeModal === "create" && (
           <AddItemModal
             handleCloseModal={handleCloseModal}
-            isOpen={activeModal === "create"}
             onAddItem={handleAddItemSubmit}
+            isOpen={activeModal === "create"}
+            onClose={handleCloseModal}
           />
         )}
         {activeModal === "preview" && (
           <ItemModal
+            // handleCloseModal={handleCloseModal}
             selectedCard={selectedCard}
             onClose={handleCloseModal}
             onDeleteItem={handleCardDelete}

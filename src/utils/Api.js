@@ -9,22 +9,13 @@ export const processServerResponse = (res) => {
 };
 
 export const getClothingItems = () => {
-  const clothingApi = fetch(`${baseUrl}/items`, {
+  return fetch(`${baseUrl}/items`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
-  }).then(processServerResponse);
-  return clothingApi;
-};
-
-export const deleteClothingItems = (_id) => {
-  return fetch(`${baseUrl}/items/${_id}`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application / json" },
   }).then(processServerResponse);
 };
 
 export const addClothingItem = (newItem) => {
-  console.log(newItem);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: { "Content-Type": "application / json" },
@@ -33,5 +24,12 @@ export const addClothingItem = (newItem) => {
       weather: newItem.weather,
       imageUrl: newItem.imageUrl,
     }),
+  }).then(processServerResponse);
+};
+
+export const deleteClothingItems = (_id) => {
+  return fetch(`${baseUrl}/items/${_id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application / json" },
   }).then(processServerResponse);
 };
