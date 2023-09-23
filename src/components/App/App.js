@@ -25,10 +25,12 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
-  const [isDay, setDayOrNight] = useState("true");
   const [location, setLocation] = useState("");
   const [clothingArray, setClothingArray] = useState([]);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [sunrise, setSunrise] = useState(null);
+  const [sunset, setSunset] = useState(null);
+  const dateNow = Date.now() * 0.001;
 
   /* -------------------------------------------------------------------------- */
   /*                                  HANDLERS                                  */
@@ -45,12 +47,12 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleCardDelete = (values) => {
-    deleteClothingItems(values.id)
-      .then((data) => {
-        const deleteId = values.id;
+  const handleCardDelete = (card) => {
+    console.log(card);
+    deleteClothingItems(card)
+      .then((res) => {
         const updatedArray = clothingArray.filter((item) => {
-          return item.id !== deleteId;
+          return item._id !== card._id;
         });
         setClothingArray(updatedArray);
         handleCloseModal();
@@ -61,19 +63,21 @@ function App() {
   };
 
   const handleAddItemSubmit = (values) => {
+    console.log(values);
     const newItem = {
       name: values.name,
-      imageUrl: values.imageUrl,
+      imageUrl: values.link,
       weather: values.weather,
     };
     addClothingItem(newItem)
-      .then((newItem) => {
+      .then((res) => {
         setClothingArray([newItem, ...clothingArray]);
         handleCloseModal();
       })
       .catch((err) => {
         console.log(err);
       });
+    console.log(clothingArray);
   };
 
   const handleToggleSwitchChange = () => {
@@ -88,18 +92,37 @@ function App() {
   useEffect(() => {
     getForecast()
       .then((data) => {
-        const temperature = parseWeatherData(data);
-        const isDaytime = parseTimeOfDay(data);
-        const location = parseLocation(data);
+        const weather = {
+          temperature: {
+            F: Math.round(data.main.temp),
+            C: Math.round(((data.main.temp - 32) * 5) / 9),
+          },
+        };
+        // const temperature = parseWeatherData(data);
+        // const isDaytime = parseTimeOfDay(data);
+        // const location = parseLocation(data);
 
-        setLocation(location);
-        setTemp(temperature);
-        setDayOrNight(isDaytime);
+        // setLocation(location);
+        const locationName = data.name;
+        setLocation(locationName);
+        setTemp(weather);
+        const sunriseData = data.sys.sunrise;
+        setSunrise(sunriseData);
+        const sunsetData = data.sys.sunset;
+        setSunset(sunsetData);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+
+  const timeOfDay = () => {
+    if (dateNow >= sunrise && dateNow < sunset) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   useEffect(() => {
     getClothingItems()
@@ -152,7 +175,7 @@ function App() {
             <Main
               weatherTemp={temp}
               onSelectCard={handleSelectedCard}
-              setDayOrNight={isDay}
+              timeOfDay={timeOfDay()}
               clothingArr={clothingArray}
             />
           </Route>
@@ -176,7 +199,7 @@ function App() {
           <ItemModal
             selectedCard={selectedCard}
             onClose={handleCloseModal}
-            onDeleteCard={handleCardDelete}
+            onDeleteItem={handleCardDelete}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

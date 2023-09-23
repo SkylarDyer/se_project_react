@@ -4,13 +4,14 @@ const ItemCard = ({ item, onSelectCard }) => {
       <div>
         <img
           className="card__image"
-          src={item.link}
+          id={`card__image_${item.name}`}
+          src={item.imageUrl}
           alt="garment"
           onClick={() => onSelectCard(item)}
         />
       </div>
 
-      <div className="card__name">{item.name}</div>
+      <div id={`{card__name}_$(item.name)`} className="card__name"></div>
     </div>
   );
 };

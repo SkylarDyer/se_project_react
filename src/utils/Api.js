@@ -16,8 +16,8 @@ export const getClothingItems = () => {
   return clothingApi;
 };
 
-export const deleteClothingItems = (id) => {
-  return fetch(`${baseUrl}/items/${id}`, {
+export const deleteClothingItems = (_id) => {
+  return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application / json" },
   }).then(processServerResponse);
