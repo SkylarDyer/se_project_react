@@ -49,12 +49,6 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
     },
     {
-      "_id": 11,
-      "name": "Shorts",
-      "weather": "hot",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
-    },
-    {
       "_id": 12,
       "name": "Skirt",
       "weather": "hot",
@@ -86,33 +80,6 @@
     },
     {
       "_id": 17
-    },
-    {
-      "_id": 18
-    },
-    {
-      "_id": 19
-    },
-    {
-      "_id": 20
-    },
-    {
-      "_id": 21
-    },
-    {
-      "_id": 22
-    },
-    {
-      "_id": 23
-    },
-    {
-      "_id": 24
-    },
-    {
-      "_id": 25
-    },
-    {
-      "_id": 26
     }
   ]
 }

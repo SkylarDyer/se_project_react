@@ -11,7 +11,6 @@ const WeatherCard = ({ day, type, weatherTemp = "" }) => {
   });
   const weatherOptionUrl = weatherOption?.url || "";
   const weatherOptionType = weatherOption?.type;
-  console.log(weatherOptionUrl);
 
   return (
     <section className="weather" id="weather">

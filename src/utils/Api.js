@@ -24,13 +24,14 @@ export const deleteClothingItems = (_id) => {
 };
 
 export const addClothingItem = (newItem) => {
+  console.log(newItem);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: { "Content-Type": "application / json" },
     body: JSON.stringify({
       name: newItem.name,
-      imageUrl: newItem.imageUrl,
       weather: newItem.weather,
+      imageUrl: newItem.imageUrl,
     }),
   }).then(processServerResponse);
 };
