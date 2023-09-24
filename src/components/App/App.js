@@ -7,19 +7,13 @@ import { useEffect, useState } from "react";
 import ItemModal from "../ItemModal/ItemModal";
 import { Switch, Route } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-import {
-  getForecast,
-  parseWeatherData,
-  parseLocation,
-  parseTimeOfDay,
-} from "../../utils/weatherApi";
+import { getForecast } from "../../utils/weatherApi";
 import {
   getClothingItems,
   deleteClothingItems,
   addClothingItem,
 } from "../../utils/Api";
-import AddItemModal from "../../AddItemModal/AddItemModal";
-
+import AddItemModal from "../AddItemModal/AddItemModal";
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -96,11 +90,6 @@ function App() {
             C: Math.round(((data.main.temp - 32) * 5) / 9),
           },
         };
-        // const temperature = parseWeatherData(data);
-        // const isDaytime = parseTimeOfDay(data);
-        // const location = parseLocation(data);
-
-        // setLocation(location);
         const locationName = data.name;
         setLocation(locationName);
         setTemp(weather);
@@ -196,7 +185,6 @@ function App() {
         )}
         {activeModal === "preview" && (
           <ItemModal
-            // handleCloseModal={handleCloseModal}
             selectedCard={selectedCard}
             onClose={handleCloseModal}
             onDeleteItem={handleCardDelete}
