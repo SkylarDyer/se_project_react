@@ -1,8 +1,8 @@
 import React from "react";
-import "./Sidebar.css";
+import "./SideBar.css";
 import avatar from "../../images/avatar.svg";
 
-const Sidebar = () => {
+const SideBar = () => {
   return (
     <div className="sidebar">
       <img className="profile__image" src={avatar} alt="avatar"></img>
@@ -11,4 +11,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;
