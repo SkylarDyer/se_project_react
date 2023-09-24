@@ -2,6 +2,7 @@ import React from "react";
 import "./Profile.css";
 import Sidebar from "../Sidebar/Sidebar";
 import ClothesSection from "../Clothes/ClothesSection";
+// import "./ClothesSection.css";
 const Profile = ({ onCreateModal, onSelectCard, clothingArr }) => {
   return (
     <section className="profile">
@@ -10,7 +11,7 @@ const Profile = ({ onCreateModal, onSelectCard, clothingArr }) => {
       </div>
 
       <ClothesSection
-        className="clothing"
+        // className="clothing"
         onCreateModal={onCreateModal}
         onSelectCard={onSelectCard}
         clothingArr={clothingArr}

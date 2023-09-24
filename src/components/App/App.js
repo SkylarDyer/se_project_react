@@ -70,7 +70,7 @@ function App() {
     };
     addClothingItem(newItem)
       .then((res) => {
-        setClothingArray([newItem, ...clothingArray]);
+        setClothingArray([res, ...clothingArray]);
         handleCloseModal();
       })
       .catch((err) => {

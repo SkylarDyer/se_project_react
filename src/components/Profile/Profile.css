@@ -15,6 +15,8 @@
 .profile__heading {
   display: flex;
   align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
 }
 
 .profile__image {
@@ -54,7 +56,6 @@
   border: none;
   background: #fff;
   cursor: pointer;
-  transition: opacity 0.5s ease-in-out;
   padding-left: 20px;
 }
 

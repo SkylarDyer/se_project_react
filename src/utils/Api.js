@@ -16,9 +16,10 @@ export const getClothingItems = () => {
 };
 
 export const addClothingItem = (newItem) => {
+  debugger;
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application / json" },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       name: newItem.name,
       weather: newItem.weather,
@@ -30,6 +31,6 @@ export const addClothingItem = (newItem) => {
 export const deleteClothingItems = (_id) => {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application / json" },
+    headers: { "Content-Type": "application/json" },
   }).then(processServerResponse);
 };
