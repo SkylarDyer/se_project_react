@@ -29,38 +29,34 @@
   max-width: 498px;
 }
 
-.modal__item-name {
+.modal__footer {
   font-family: "CabinetGrotesk", Arial, sans-serif;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  margin-left: 6px;
   font-size: 20px;
-  font-style: normal;
+}
+
+.modal__item-name {
+  margin: 25px 0 12px;
+  font-size: 20px;
   font-weight: 700;
-  line-height: 1.1;
-  margin-top: 20px;
-  margin-left: 32px;
 }
 
 .modal__weather-type {
-  font-family: "CabinetGrotesk", Arial, sans-serif;
-  font-size: 20px;
-  font-style: normal;
+  position: absolute;
+  margin-top: 60px;
   font-weight: 700;
-  line-height: 1.1;
-  margin-left: 32px;
-  margin-top: 12px;
-  margin-bottom: 32px;
 }
 
 .modal__delete-button {
-  position: absolute;
-  bottom: 98px;
-  right: 32px;
-  font-family: "CabinetGrotesk", Arial, sans-serif;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 1.2;
-  color: #ff4d00;
+  color: red;
+  margin: 25px 24px 0 0;
+  padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
+  max-height: 24px;
+  font-size: 20px;
 }

@@ -16,7 +16,6 @@ export const getClothingItems = () => {
 };
 
 export const addClothingItem = (newItem) => {
-  debugger;
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

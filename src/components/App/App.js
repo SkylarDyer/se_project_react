@@ -46,12 +46,12 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleCardDelete = (card) => {
-    console.log(card);
-    deleteClothingItems(card)
+  const handleCardDelete = (_id) => {
+    console.log(_id);
+    deleteClothingItems(_id)
       .then((res) => {
         const updatedArray = clothingArray.filter((item) => {
-          return item._id !== card._id;
+          return item._id !== _id;
         });
         setClothingArray(updatedArray);
         handleCloseModal();

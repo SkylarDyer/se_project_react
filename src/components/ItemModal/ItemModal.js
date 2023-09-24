@@ -17,17 +17,19 @@ const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
           alt="Garment"
           className="modal__image-preview"
         />
-        <div className="modal__item-name">{selectedCard.name}</div>
-        <div className="modal__weather-type">
-          Weather type: {selectedCard.weather}
+        <div className="modal__footer">
+          <div className="modal__item-name">{selectedCard.name}</div>
+          <div className="modal__weather-type">
+            Weather type: {selectedCard.weather}
+          </div>
+          <button
+            type="button"
+            className="modal__delete-button"
+            onClick={handleCardDelete}
+          >
+            Delete Item
+          </button>
         </div>
-        <button
-          type="button"
-          className="modal__delete-button"
-          onClick={handleCardDelete}
-        >
-          Delete Item
-        </button>
       </div>
     </div>
   );
