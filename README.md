@@ -21,14 +21,14 @@ Preview Card
 
 ## Languages and Technologies
 
--HTML
--CSS
--Figma
--OOP
--JavaScript
--Git
--JSON
--Webpack
--GitHub
--Fetch API
--React
+- HTML
+- CSS
+- Figma
+- OOP
+- JavaScript
+- Git
+- JSON
+- Webpack
+- GitHub
+- Fetch API
+- React
