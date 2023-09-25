@@ -24,7 +24,7 @@ function Main({ weatherTemp, onSelectCard, clothingArr, timeOfDay }) {
   });
   return (
     <main className="main">
-      <WeatherCard day={timeOfDay} type="rain" weatherTemp={temp} />
+      <WeatherCard day={timeOfDay} type="clear" weatherTemp={temp} />
       <section className="card__section" id="card-section">
         <h2 className="card__section-title">
           Today is {temp}° {currentTemperatureUnit}. You may want to wear:
