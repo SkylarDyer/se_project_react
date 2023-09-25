@@ -14,11 +14,11 @@ const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
         ></button>
         <img
           src={selectedCard.imageUrl}
-          alt="Garment"
+          alt={selectedCard.name}
           className="modal__image-preview"
         />
         <div className="modal__footer">
-          <div className="modal__item-name">{selectedCard.name}</div>
+          <h3 className="modal__item-name">{selectedCard.name}</h3>
           <div className="modal__weather-type">
             Weather type: {selectedCard.weather}
           </div>

@@ -7,10 +7,8 @@ function Main({ weatherTemp, onSelectCard, clothingArr, timeOfDay }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || "";
 
-  const getWeatherType = (temp) => {
-    if (currentTemperatureUnit === "C") {
-      temp = (temp * 9) / 5 + 32;
-    }
+  const getWeatherType = () => {
+    const temp = weatherTemp?.temperature?.F;
     if (temp >= 86) {
       return "hot";
     } else if (temp >= 66 && temp <= 85) {
