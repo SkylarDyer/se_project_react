@@ -1,11 +1,24 @@
+import { useContext } from "react";
 import "../ItemModal/ItemModal.css";
+import { deleteClothingItems } from "../../utils/Api";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
-  const handleCardDelete = () => {
-    onDeleteItem(selectedCard._id);
+const ItemModal = ({ name, selectedCard, onClose }) => {
+  const user = useContext(CurrentUserContext);
+
+  const isCardOwner = () => {
+    if (user === null) {
+      return false;
+    } else if (user !== null) {
+      if (selectedCard.owner === user.id) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   };
   return (
-    <div className={`modal`}>
+    <div className={`modal modal__type${name}`}>
       <div className="modal__content">
         <button
           type="button"
@@ -19,16 +32,17 @@ const ItemModal = ({ selectedCard, onClose, onDeleteItem }) => {
         />
         <div className="modal__footer">
           <h3 className="modal__item-name">{selectedCard.name}</h3>
-          <div className="modal__weather-type">
+          <p className="modal__weather-type">
             Weather type: {selectedCard.weather}
-          </div>
-          <button
-            type="button"
-            className="modal__delete-button"
-            onClick={handleCardDelete}
-          >
-            Delete Item
-          </button>
+          </p>
+          {isCardOwner() ? (
+            <button
+              className="modal__delete-button"
+              onClick={deleteClothingItems}
+            >
+              Delete Item
+            </button>
+          ) : null}
         </div>
       </div>
     </div>

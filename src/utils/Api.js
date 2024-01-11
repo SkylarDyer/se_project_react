@@ -8,17 +8,24 @@ export const processServerResponse = (res) => {
   return Promise.reject(`Error: ${res.status}`);
 };
 
-export const getClothingItems = () => {
+export const getClothingItems = (token) => {
   return fetch(`${baseUrl}/items`, {
     method: "GET",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(processServerResponse);
 };
 
 export const addClothingItem = (newItem) => {
+  const token = localStorage.getItem("token");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name: newItem.name,
       weather: newItem.weather,
@@ -27,9 +34,12 @@ export const addClothingItem = (newItem) => {
   }).then(processServerResponse);
 };
 
-export const deleteClothingItems = (_id) => {
+export const deleteClothingItems = (_id, token) => {
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+     },
   }).then(processServerResponse);
 };
