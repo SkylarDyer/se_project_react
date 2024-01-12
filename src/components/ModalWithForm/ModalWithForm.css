@@ -12,14 +12,14 @@
 
 .modal__content {
   position: relative;
-  background-color: #fff;
-  max-width: 496px;
+  background-color: white;
+  max-width: 440px;
   max-height: 380px;
-  height: 100%;
   width: 100%;
+  height: 100%;
   border-radius: 20px;
-  padding: 34px 36px;
   border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 28px 28px;
 }
 
 .modal__close-button {
@@ -42,31 +42,43 @@
   font-style: normal;
   font-weight: 700;
   line-height: 1.1;
-  margin-top: 28px;
-  margin-left: 28px;
-  margin: 28px 28px 0px 28px;
+  margin: 0;
+  padding-bottom: 20px;
 }
 
 .modal__form {
-  margin-right: 20px;
-  max-width: 496px;
+  margin-right: 28px;
+  max-width: 450px;
+  position: relative;
 }
-.modal__text-inputs {
-  display: flex;
-  flex-direction: column;
-  padding-top: 24px;
-  /* gap: 24px; */
+.modal__input {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  outline: none;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  width: 440px;
+  margin-bottom: 5px;
 }
 
 .modal__label {
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
-  /* margin-right: 30px; */
-  margin-top: 30px;
+  color: #000;
+  font-family: "CabinetGrotesk-Bold", Arial, sans-serif;
   font-size: 16px;
-  line-height: 20px;
-  width: 100%;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  /* padding-bottom: 10px; */
+  padding-top: 10px;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .modal__input {
@@ -74,6 +86,13 @@
   border-bottom: 1px solid black;
   font-size: 16px;
   padding: 10px 0;
+  width: 440px;
+  font-family: "Cabinet Grotesk-Bold", Arial, sans-serif;
+}
+
+.modal__error {
+  color: red;
+  margin-left: 10px;
 }
 
 .modal__select-weather {
@@ -107,8 +126,7 @@
 }
 
 .modal__submit-button {
-  margin-top: 34px;
-  width: 124px;
+  width: 120px;
   height: 36px;
   color: #fff;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
@@ -119,7 +137,6 @@
   border-radius: 4px;
   background-color: #000;
   border: 1px;
-  padding: 0;
   cursor: pointer;
   transition: opacity 0.5s ease-in-out;
 }
@@ -131,4 +148,62 @@
 .modal__submit-button:disabled {
   background-color: rgba(0, 0, 0, 0.3);
   cursor: default;
+}
+
+.modal__close-button {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  margin-left: auto;
+  background-image: url(../../images/Modal-Close-Button-gray.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border: 0;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+.modal__close-button:hover {
+  opacity: 0.4;
+}
+
+.modal__title {
+  font-size: large;
+  margin-top: 0;
+}
+
+.register__button {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  position: relative;
+  left: 150px;
+  top: 30px;
+  cursor: pointer;
+}
+.register__button:hover {
+  opacity: 0.6;
+}
+
+.login__button {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  position: relative;
+  left: 150px;
+  top: 26px;
+  cursor: pointer;
+}
+
+.login__button:hover {
+  opacity: 0.6;
 }

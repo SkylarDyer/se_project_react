@@ -1,6 +1,6 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import React, { useState } from "react";
-import "./LoginModal.css";
+import "../../components/ModalWithForm/ModalWithForm.css";
 
 const LoginModal = ({ isOpen, onClose, onLogin, toRegister }) => {
   const [email, setEmail] = useState("");
@@ -13,8 +13,6 @@ const LoginModal = ({ isOpen, onClose, onLogin, toRegister }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email, password);
-
     if (isPasswordValid(password)) {
       setValidForm("true");
       onLogin({ email, password });
@@ -25,15 +23,15 @@ const LoginModal = ({ isOpen, onClose, onLogin, toRegister }) => {
   return (
     <ModalWithForm
       onClose={onClose}
-      submitEvent={handleSubmit}
-      title={"Welcome back!"}
+      handleSubmit={handleSubmit}
+      title={"Log In"}
       name={"Log In"}
-      className="form__input-title"
+      className="modal__title"
     >
-      <label className="form__input-label">
+      <label className="modal__label">
         Email
         <input
-          className="form__input form__input-email"
+          className="modal__input modal__text-inputs"
           type="email"
           placeholder="Email"
           value={email}
@@ -43,11 +41,11 @@ const LoginModal = ({ isOpen, onClose, onLogin, toRegister }) => {
           }}
         />
       </label>
-      <label className="form__input-label" type="text">
+      <label className="modal__label" type="text">
         Password
         <input
-          className={`form__input input__type-password ${
-            isPasswordValid ? "" : "form__input-invalid"
+          className={`modal__input modal__text-inputs${
+            isPasswordValid ? "" : "modal__error"
           }`}
           type="password"
           placeholder="Password"

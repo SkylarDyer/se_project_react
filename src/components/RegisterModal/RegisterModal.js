@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import "./RegisterModal.css";
+import "../../components/ModalWithForm/ModalWithForm.css";
 
 const RegisterModal = ({ onClose, onRegister, toLogin, ...props }) => {
   const [email, setEmail] = useState("");
@@ -22,62 +22,60 @@ const RegisterModal = ({ onClose, onRegister, toLogin, ...props }) => {
     <ModalWithForm
       submitEvent={handleSubmit}
       onClose={onClose}
-      title={"Register today!"}
+      title={"Sign Up"}
       name={"Register"}
     >
-      <div>
-        <label className="form__input-label">
-          Name
-          <input
-            className="form__input form__input-name"
-            type="text"
-            placeholder="Name"
-            required
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-          />
-        </label>
-        <label className="form__input-label">
-          Avatar
-          <input
-            className="form__input form__input-avatar"
-            type="text"
-            placeholder="URL"
-            required
-            onChange={(event) => {
-              setAvatar(event.target.value);
-            }}
-          />
-        </label>
-        <label className="form__input-label">
-          Email
-          <input
-            className="form__input form__input-email"
-            type="email"
-            placeholder="Email"
-            required
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </label>
-        <label className="form__input-label" type="text">
-          Password
-          <input
-            className={`form__input input__type-password`}
-            type="password"
-            placeholder="Password"
-            required
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-          />
-        </label>
-        <p className="login__button" onClick={toLogin}>
-          Or sign in
-        </p>
-      </div>
+      <label className="modal__label">
+        Email*
+        <input
+          className="modal__input"
+          type="email"
+          placeholder="Email"
+          required
+          onChange={(event) => {
+            setEmail(event.target.value);
+          }}
+        />
+      </label>
+      <label className="modal__label" type="text">
+        Password*
+        <input
+          className="modal__input"
+          type="password"
+          placeholder="Password"
+          required
+          onChange={(event) => {
+            setPassword(event.target.value);
+          }}
+        />
+      </label>
+      <label className="modal__label">
+        Name*
+        <input
+          className="modal__input"
+          type="text"
+          placeholder="Name"
+          required
+          onChange={(event) => {
+            setName(event.target.value);
+          }}
+        />
+      </label>
+      <label className="modal__label">
+        Avatar*
+        <input
+          className="modal__input"
+          type="text"
+          placeholder="URL"
+          required
+          onChange={(event) => {
+            setAvatar(event.target.value);
+          }}
+        />
+      </label>
+      <p className="login__button" onClick={toLogin}>
+        Or Log In
+      </p>
     </ModalWithForm>
   );
 };
